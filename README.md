@@ -60,10 +60,7 @@ malware-simulation-python/
 
 ---
 
-<details>
-  <summary>
-    # 🔐 Parte 1 — Ransomware Simulado
-  </summary><br>
+# 🔐 Parte 1 — Ransomware Simulado
 
 ## 📖 Objetivo
 
@@ -137,13 +134,28 @@ O script `decrypt.py`:
 3. Aplica descriptografia  
 4. Restaura o conteúdo original  
 
----
-</details>
+### Código
 
-<details>
-  <summary>
-    # ⌨ Parte 2 — Keylogger Simulado
-  </summary><br>
+Instalar Dependências
+```
+pip install cryptography
+```
+Executar Ransomware (Simulação)
+```
+python encrypt.py
+```
+Descriptografar Arquivos
+```
+python decrypt.py
+```
+Executar Keylogger (Simulação)
+```
+python keylogger.py
+```
+
+---
+
+# ⌨ Parte 2 — Keylogger Simulado
 
 ## 📖 Objetivo
 
@@ -195,28 +207,41 @@ O projeto demonstra conceitualmente:
 - Envio automatizado após determinado critério (tempo ou volume de dados)  
 
 ---
-</details>
 
-# 🛡 Técnicas de Defesa Identificadas
+### Código
+
+
+Instalar Dependências
+```
+pip install pynput
+```
+
+Executar Keylogger (Simulação)
+```
+python keylogger.py
+```
+
+---
+
+# 🛡 Técnicas de Defesa recomendadas
+
+## Gerais (valem pros dois)
+- Backups em nuvem e/ou dispositivos externos 
+- Controle de privilégios  
+- Manter antivirus e sistema atualizados
+- Firewall bloqueando conexões suspeitas  
 
 ## 🔐 Contra Ransomware
 
-- Backups offline  
-- Controle de privilégios  
-- Atualizações regulares  
-- Monitoramento de modificação em massa  
-- EDR com análise comportamental  
-- Segmentação de rede  
+- Monitoramento de modificação em massa
 
 ---
 
 ## ⌨ Contra Keylogger
 
 - Antivírus com monitoramento comportamental  
-- Firewall bloqueando conexões suspeitas  
 - MFA (Autenticação Multifator)  
 - Monitoramento de processos em segundo plano  
-- Whitelisting de aplicações  
 
 ---
 
@@ -226,24 +251,19 @@ O projeto demonstra conceitualmente:
 
 - Uso elevado de CPU  
 - Modificação simultânea de múltiplos arquivos  
-- Criação de arquivos de resgate  
+- Presença de arquivos de resgate (NÃO SPAM DE E-MAIL)
 - Alterações inesperadas em extensões  
 
 ## Indicadores de Keylogger:
 
-- Processos ocultos em execução contínua  
-- Acesso constante a eventos de teclado  
-- Conexões SMTP não usuais  
-- Arquivos de log sendo atualizados constantemente  
+- Processos ocultos em execução contínua (Utilizar Process Explorer <https://learn.microsoft.com/en-us/sysinternals/downloads/process-explorer>)
 
 ---
 
 # 🧪 Ambiente de Testes
 
-- Execução realizada em máquina virtual  
-- Ambiente isolado  
-- Sem acesso a arquivos reais do sistema  
-- Uso exclusivo de arquivos de teste  
+- Máquina virtural (VMWare Workstation) sem acesso à rede ou arquivos do aparelho principal;
+- Utilizados apenas como testes, segundo o ensinado no curso.
 
 ---
 
@@ -254,7 +274,6 @@ Durante o desenvolvimento deste projeto, foi possível:
 - Compreender o funcionamento interno de ransomware  
 - Entender como eventos de teclado podem ser interceptados  
 - Identificar vulnerabilidades exploradas por engenharia social  
-- Estudar medidas reais de defesa  
 - Desenvolver pensamento crítico voltado para segurança ofensiva e defensiva  
 
 ---
@@ -264,24 +283,4 @@ Durante o desenvolvimento deste projeto, foi possível:
 O estudo de malware é fundamental para profissionais de segurança da informação.  
 Este projeto foi desenvolvido com responsabilidade, visando exclusivamente aprendizado e conscientização sobre ameaças digitais.
 
----
-
-# 🚀 Como Executar
-
-Instalar Dependências
-```
-pip install cryptography pynput
-```
-Executar Ransomware (Simulação)
-```
-python encrypt.py
-```
-Descriptografar Arquivos
-```
-python decrypt.py
-```
-Executar Keylogger (Simulação)
-```
-python keylogger.py
-```
 
