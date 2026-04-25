@@ -1,161 +1,287 @@
-# testesdoMal
-Projeto exclusivamente educacional, simulando o funcionamento de keyloger e ransomware
+# 🛡 Simulação Educacional de Malware com Python
 
-🛡 Simulação Educacional de Malware com Python
-📌 Sobre o Projeto
+> ⚠️ **Aviso Importante**  
+> Este projeto foi desenvolvido exclusivamente para fins educacionais, em ambiente controlado (máquina virtual), com o objetivo de compreender o funcionamento de ameaças digitais e estudar estratégias de defesa.  
+> Nenhum código aqui deve ser utilizado fora de ambiente de testes.
 
-Este projeto tem finalidade exclusivamente educacional, simulando o funcionamento de dois tipos de malware:
+---
 
-Ransomware
-Keylogger
+# 📌 Sobre o Projeto
 
-Todos os testes foram realizados em ambiente controlado (máquina virtual), sem qualquer risco a sistemas reais.
+Este projeto simula o comportamento de dois tipos de malware amplamente utilizados em ataques reais:
 
-🔐 Parte 1 — Ransomware Simulado
-🎯 Objetivo
+- 🔐 **Ransomware**
+- ⌨ **Keylogger**
 
-Demonstrar como um ransomware:
+O objetivo é compreender, na prática:
 
-Percorre arquivos
-Criptografa conteúdo
-Sobrescreve arquivos
-Exibe mensagem de resgate
-Permite descriptografia com chave correta
-⚙ Tecnologias Utilizadas
-Python 3.x
-Biblioteca cryptography (Fernet)
-Manipulação de arquivos com os e pathlib
-🧠 Funcionamento Técnico
-1️⃣ Geração da chave
-Uma chave simétrica é gerada usando Fernet.
-A chave é salva no arquivo key.key.
-2️⃣ Varredura do diretório
+- Como esses malwares operam  
+- Quais vulnerabilidades exploram  
+- Como podem ser detectados  
+- Quais estratégias de mitigação são eficazes  
 
-O script percorre apenas:
+---
 
-ransomware_simulado/arquivos_teste/
+# 🎯 Objetivos de Aprendizagem
 
-Utiliza:
+Ao desenvolver este projeto, foram explorados os seguintes conceitos:
 
-os.listdir()
-open(..., "rb")
-open(..., "wb")
-3️⃣ Criptografia
+- Manipulação de arquivos em Python  
+- Criptografia simétrica  
+- Captura de eventos do teclado  
+- Comunicação via protocolo SMTP  
+- Pensamento ofensivo e defensivo em segurança  
+- Documentação técnica estruturada  
+
+---
+
+# 🗂 Estrutura do Projeto
+
+```
+malware-simulation-python/
+│
+├── ransomware_simulado/
+│ ├── encrypt.py
+│ ├── decrypt.py
+│ ├── key.key
+│ └── arquivos_teste/
+│ ├── teste1.txt
+│ ├── teste2.txt
+│
+├── keylogger_simulado/
+│ ├── keylogger.py
+│ └── logs.txt
+│
+├── images/
+│
+└── README.md
+```
+
+
+---
+
+<details>
+  <summary>
+    # 🔐 Parte 1 — Ransomware Simulado
+  </summary><br>
+
+## 📖 Objetivo
+
+Simular o comportamento básico de um ransomware:
+
+1. Gerar chave criptográfica  
+2. Percorrer arquivos em diretório controlado  
+3. Criptografar conteúdo  
+4. Sobrescrever arquivos  
+5. Criar mensagem simulando pedido de resgate  
+6. Permitir descriptografia com chave correta  
+
+---
+
+## ⚙ Tecnologias Utilizadas
+
+- Python 3.x  
+- Biblioteca `cryptography` (Fernet)  
+- Manipulação de arquivos (`os`, `pathlib`)  
+
+---
+
+## 🧠 Funcionamento Técnico
+
+### 🔑 Geração da Chave
+
+- É utilizada criptografia simétrica  
+- A chave é gerada com Fernet  
+- A chave é armazenada localmente em `key.key`  
+
+---
+
+### 📂 Varredura de Diretório
+
+O script atua **apenas** no diretório: ransomware_simulado/arquivos_teste/
+
+
+São utilizados:
+
+- `os.listdir()` ou `os.walk()`  
+- `open(..., "rb")`  
+- `open(..., "wb")`  
+
+---
+
+### 🔒 Processo de Criptografia
 
 Para cada arquivo:
 
-Lê conteúdo binário
-Aplica fernet.encrypt()
-Sobrescreve o conteúdo original
-4️⃣ Mensagem de resgate
+1. Leitura em modo binário  
+2. Aplicação de criptografia  
+3. Sobrescrita do conteúdo original  
 
-É criado um arquivo:
+---
 
-LEIA_IMPORTANTE.txt
+### 📝 Mensagem de Resgate
 
-Com uma mensagem simulando pedido de resgate.
+Após a criptografia, é criado um arquivo: SIFU_DEU.txt
 
-🔓 Descriptografia
 
-O script decrypt.py:
+Simulando uma mensagem típica de ransomware.
 
-Carrega a chave salva
-Percorre os mesmos arquivos
-Aplica fernet.decrypt()
-Restaura o conteúdo original
-⌨ Parte 2 — Keylogger Simulado
-🎯 Objetivo
+---
 
-Simular captura de teclas digitadas e armazenamento em log local.
+### 🔓 Processo de Descriptografia
 
-⚙ Tecnologias Utilizadas
-Python 3.x
-Biblioteca pynput
-smtplib (simulação de envio de e-mail)
-🧠 Funcionamento Técnico
-1️⃣ Captura de teclas
+O script `decrypt.py`:
 
-Utiliza:
+1. Lê a chave salva  
+2. Percorre os arquivos criptografados  
+3. Aplica descriptografia  
+4. Restaura o conteúdo original  
 
-pynput.keyboard.Listener
-Callback on_press()
+---
+</details>
 
-Cada tecla pressionada é registrada.
+<details>
+  <summary>
+    # ⌨ Parte 2 — Keylogger Simulado
+  </summary><br>
 
-2️⃣ Tratamento de teclas especiais
-Espaço → " "
-Enter → "\n"
-Backspace → marcador especial
-3️⃣ Armazenamento
+## 📖 Objetivo
 
-O log é salvo em:
+Simular a captura de teclas digitadas e armazenamento em log local.
 
-keylogger_simulado/logs.txt
+---
 
-Modo append ("a").
+## ⚙ Tecnologias Utilizadas
 
-4️⃣ Envio por e-mail (simulado)
+- Python 3.x  
+- Biblioteca `pynput`  
+- `smtplib` (simulação de envio de e-mail)  
 
-O script pode:
+---
 
-A cada X teclas
-Ou a cada Y segundos
+## 🧠 Funcionamento Técnico
 
-Enviar o arquivo como anexo via SMTP.
+### 🎹 Captura de Teclas
 
-Foi utilizado:
+- Utiliza `pynput.keyboard.Listener`  
+- Implementa função de callback para capturar eventos de tecla pressionada  
 
-smtplib
-email.message
-TLS na porta 587
-🔍 Técnicas de Defesa Identificadas
-Contra Ransomware
-Backups offline
-Controle de privilégios
-Monitoramento de modificação em massa
-EDR com análise comportamental
-Bloqueio de execução em diretórios temporários
-Contra Keylogger
-Antivírus com monitoramento de hooks de teclado
-Firewall bloqueando conexões SMTP suspeitas
-MFA
-Monitoramento de processos em background
-Whitelisting de aplicações
-🧪 Evidências de Execução
+---
 
-(Imagens dentro da pasta /images)
+### 🔎 Tratamento de Teclas Especiais
 
-Execução do encrypt.py
-Arquivos criptografados
-Execução do decrypt.py
-Log de teclas capturado
-📚 Aprendizados
+- Espaço → `" "`  
+- Enter → `"\n"`  
+- Backspace → marcador especial  
+- Teclas especiais são tratadas para manter legibilidade  
 
-Durante o desenvolvimento deste projeto, foi possível compreender:
+---
 
-Como funciona criptografia simétrica
-Como eventos de teclado são interceptados
-Como malwares exploram engenharia social
-A importância de defesa em camadas
-A relevância do fator humano na segurança
-🚨 Considerações Éticas
+### 🗂 Registro em Arquivo
 
-Este projeto foi desenvolvido exclusivamente para fins acadêmicos, em ambiente controlado, com o objetivo de compreender ameaças digitais e aprimorar estratégias defensivas.
+As teclas capturadas são armazenadas em: keylogger_simulado/logs.txt
 
-💻 Como Executar
 
-Instalar dependências:
+Utilizando modo append (`"a"`).
 
+---
+
+### 📧 Envio por E-mail (Simulado)
+
+O projeto demonstra conceitualmente:
+
+- Uso do protocolo SMTP  
+- Conexão TLS (porta 587)  
+- Envio automatizado após determinado critério (tempo ou volume de dados)  
+
+---
+</details>
+
+# 🛡 Técnicas de Defesa Identificadas
+
+## 🔐 Contra Ransomware
+
+- Backups offline  
+- Controle de privilégios  
+- Atualizações regulares  
+- Monitoramento de modificação em massa  
+- EDR com análise comportamental  
+- Segmentação de rede  
+
+---
+
+## ⌨ Contra Keylogger
+
+- Antivírus com monitoramento comportamental  
+- Firewall bloqueando conexões suspeitas  
+- MFA (Autenticação Multifator)  
+- Monitoramento de processos em segundo plano  
+- Whitelisting de aplicações  
+
+---
+
+# 🔎 Como Detectar Esse Tipo de Ameaça
+
+## Indicadores de Ransomware:
+
+- Uso elevado de CPU  
+- Modificação simultânea de múltiplos arquivos  
+- Criação de arquivos de resgate  
+- Alterações inesperadas em extensões  
+
+## Indicadores de Keylogger:
+
+- Processos ocultos em execução contínua  
+- Acesso constante a eventos de teclado  
+- Conexões SMTP não usuais  
+- Arquivos de log sendo atualizados constantemente  
+
+---
+
+# 🧪 Ambiente de Testes
+
+- Execução realizada em máquina virtual  
+- Ambiente isolado  
+- Sem acesso a arquivos reais do sistema  
+- Uso exclusivo de arquivos de teste  
+
+---
+
+# 📚 Aprendizados Obtidos
+
+Durante o desenvolvimento deste projeto, foi possível:
+
+- Compreender o funcionamento interno de ransomware  
+- Entender como eventos de teclado podem ser interceptados  
+- Identificar vulnerabilidades exploradas por engenharia social  
+- Estudar medidas reais de defesa  
+- Desenvolver pensamento crítico voltado para segurança ofensiva e defensiva  
+
+---
+
+# ⚖ Considerações Éticas
+
+O estudo de malware é fundamental para profissionais de segurança da informação.  
+Este projeto foi desenvolvido com responsabilidade, visando exclusivamente aprendizado e conscientização sobre ameaças digitais.
+
+---
+
+# 🚀 Como Executar
+
+Instalar Dependências
+```
 pip install cryptography pynput
-
-Executar ransomware:
-
+```
+Executar Ransomware (Simulação)
+```
 python encrypt.py
-
-Descriptografar:
-
+```
+Descriptografar Arquivos
+```
 python decrypt.py
-
-Executar keylogger:
-
+```
+Executar Keylogger (Simulação)
+```
 python keylogger.py
+```
+
