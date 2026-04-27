@@ -1,6 +1,0 @@
-PAUTA: Fusão com a Empresa concorrente X
-- Orçamento máximo para aquisição: R$ 15.000.000,00
-- Lista de funcionários que serão demitidos após a integração (Anexo I)
-- Vulnerabilidades identificadas na última auditoria de compliance:
-  1. Falta de firewall no servidor de backup.
-  2. Uso de softwares não licenciados no setor financeiro.
