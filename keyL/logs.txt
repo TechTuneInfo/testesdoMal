@@ -1,0 +1,20 @@
+--- Registro em: 2024-05-20 09:00:20 ---
+[Key.cmd]firefox[ENTER]
+gmail.com[ENTER]
+rodrigo.vendas@empresa.com[TAB]SenhaForte#2024[ENTER]
+
+--- Registro em: 2024-05-20 09:05:42 ---
+Bom dia, Cláudio.
+Segue o relat[BACKSPACE][BACKSPACE]at[BACKSPACE][BACKSPACE]latório de vendas atualizado.
+Ficou faltando a parte de mkt[BACKSPACE][BACKSPACE][BACKSPACE]marketing.
+Pode revisar?
+[Key.ctrl]s
+
+--- Registro em: 2024-05-20 10:15:30 ---
+youtube.com[ENTER]
+lofi hip hop radio[ENTER]
+
+--- Registro em: 2024-05-20 10:45:12 ---
+whats[TAB]
+Oi amor, vou chegar mais tarde hj[ENTER]
+A reunião vai demorar mto[BACKSPACE][BACKSPACE][BACKSPACE]muito.[ENTER]
