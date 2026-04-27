@@ -1,287 +1,116 @@
-# 🛡 Simulação Educacional de Malware com Python
+# 🛡️ Simulação Educacional de Malware com Python
 
 > ⚠️ **Aviso Importante**  
-> Este projeto foi desenvolvido exclusivamente para fins educacionais, em ambiente controlado (máquina virtual), com o objetivo de compreender o funcionamento de ameaças digitais e estudar estratégias de defesa.  
-> Nenhum código aqui deve ser utilizado fora de ambiente de testes.
+> Este projeto foi desenvolvido exclusivamente para fins educacionais, em ambiente controlado (máquina virtual), com o objetivo de compreender o funcionamento de ameaças digitais e estudar estratégias de defesa. **Nenhum código aqui deve ser utilizado fora de ambientes de teste.**
 
 ---
 
 # 📌 Sobre o Projeto
 
-Este projeto simula o comportamento de dois tipos de malware amplamente utilizados em ataques reais:
+Este repositório contém a implementação de duas ameaças simuladas para análise de comportamento, impacto e contramedidas:
 
-- 🔐 **Ransomware**
-- ⌨ **Keylogger**
+- 🔐 **Ransomware**: Sequestro de dados via criptografia simétrica.
+- ⌨️ **Keylogger**: Monitoramento de entrada de dados e exfiltração remota.
 
-O objetivo é compreender, na prática:
-
-- Como esses malwares operam  
-- Quais vulnerabilidades exploram  
-- Como podem ser detectados  
-- Quais estratégias de mitigação são eficazes  
+O objetivo é compreender como essas ameaças operam, quais vulnerabilidades exploram e como aplicar estratégias de mitigação eficazes.
 
 ---
 
 # 🎯 Objetivos de Aprendizagem
 
-Ao desenvolver este projeto, foram explorados os seguintes conceitos:
-
-- Manipulação de arquivos em Python  
-- Criptografia simétrica  
-- Captura de eventos do teclado  
-- Comunicação via protocolo SMTP  
-- Pensamento ofensivo e defensivo em segurança  
-- Documentação técnica estruturada  
+Ao desenvolver este projeto, foram explorados os seguintes conceitos técnicos:
+- **Criptografia Simétrica**: Uso de chaves AES para proteção/sequestro de dados.
+- **Intercepção de Eventos**: Captura de I/O de teclado em nível de software.
+- **Protocolos de Rede**: Comunicação via SMTP para exfiltração de informações.
+- **Segurança Defensiva**: Identificação de Indicadores de Comprometimento (IoCs).
 
 ---
 
-# 🗂 Estrutura do Projeto
+# 🗂️ Estrutura do Repositório
 
-```
+```text
 testesdoMal/
 │
-├── ranrans/
-│ ├── encrypt.py
-│ ├── decrypt.py
-│ ├── chave.key
-│ └── arquivos_teste/
-│   ├── teste1.txt
-│   ├── teste2.txt
+├── ranrans/                 # Módulo de Ransomware
+│   ├── ramsonware.pyw       # Script de ataque (execução oculta)
+│   ├── decrypt.py           # Ferramenta de restauração de arquivos
+│   ├── chave.key            # Chave gerada para a sessão de teste
+│   └── arquivos_teste/      # Pasta contendo arquivos para simulação
 │
-├── keyL/
-│ ├── keylogger.py
-│ ├── keylogger_email.py
-│ └── logs.txt
-│
-├── images/
+├── keyL/                    # Módulo de Keylogger
+│   ├── keylogger.pyw        # Captura local com lógica de cooldown
+│   ├── keylogger_email.py   # Script de captura com envio via SMTP
+│   └── logs/                # Diretório de armazenamento dos logs txt
 │
 └── README.md
 ```
-
 
 ---
 
 # 🔐 Parte 1 — Ransomware Simulado
 
-## 📖 Objetivo
-
-Simular o comportamento básico de um ransomware:
-
-1. Gerar chave criptográfica  
-2. Percorrer arquivos em diretório controlado  
-3. Criptografar conteúdo  
-4. Sobrescrever arquivos  
-5. Criar mensagem simulando pedido de resgate  
-6. Permitir descriptografia com chave correta  
-
----
-
-## ⚙ Tecnologias Utilizadas
-
-- Python 3.x  
-- Biblioteca `cryptography` (Fernet)  
-- Manipulação de arquivos (`os`, `pathlib`)  
-
----
-
 ## 🧠 Funcionamento Técnico
 
-### 🔑 Geração da Chave
+1.  **Geração de Chave**: Utiliza a biblioteca `cryptography` (Fernet) para criar uma chave única de 32 bytes.
+2.  **Varredura Recursiva**: O script percorre o diretório alvo utilizando `os.walk`, identificando arquivos para cifrar.
+3.  **Criptografia in-place**: Os arquivos são lidos em modo binário, criptografados e sobrescritos imediatamente, tornando o conteúdo original inacessível sem a chave.
+4.  **Nota de Resgate**: É gerado o arquivo `SIFU_DEU.txt`, simulando a comunicação de um atacante real.
 
-- É utilizada criptografia simétrica  
-- A chave é gerada com Fernet  
-- A chave é armazenada localmente em `key.key`  
-
----
-
-### 📂 Varredura de Diretório
-
-O script atua **apenas** no diretório: ransomware_simulado/arquivos_teste/
-
-
-São utilizados:
-
-- `os.listdir()` ou `os.walk()`  
-- `open(..., "rb")`  
-- `open(..., "wb")`  
-
----
-
-### 🔒 Processo de Criptografia
-
-Para cada arquivo:
-
-1. Leitura em modo binário  
-2. Aplicação de criptografia  
-3. Sobrescrita do conteúdo original  
-
----
-
-### 📝 Mensagem de Resgate
-
-Após a criptografia, é criado um arquivo: SIFU_DEU.txt
-
-
-Simulando uma mensagem típica de ransomware.
-
----
-
-### 🔓 Processo de Descriptografia
-
-O script `decrypt.py`:
-
-1. Lê a chave salva  
-2. Percorre os arquivos criptografados  
-3. Aplica descriptografia  
-4. Restaura o conteúdo original  
-
-### Código
-
-Instalar Dependências
-```
+### Comandos de Execução
+```bash
+# Instalar biblioteca necessária
 pip install cryptography
-```
-Executar Ransomware (Simulação)
-```
-python encrypt.py
-```
-Descriptografar Arquivos
-```
-python decrypt.py
-```
-Executar Keylogger (Simulação)
-```
-python keylogger.py
+
+# Executar a criptografia
+python ranrans/ramsonware.pyw
+
+# Executar a restauração
+python ranrans/decrypt.py
 ```
 
 ---
 
-# ⌨ Parte 2 — Keylogger Simulado
-
-## 📖 Objetivo
-
-Simular a captura de teclas digitadas e armazenamento em log local.
-
----
-
-## ⚙ Tecnologias Utilizadas
-
-- Python 3.x  
-- Biblioteca `pynput`  
-- `smtplib` (simulação de envio de e-mail)  
-
----
+# ⌨️ Parte 2 — Keylogger Simulado
 
 ## 🧠 Funcionamento Técnico
 
-### 🎹 Captura de Teclas
+1.  **Captura de Teclas**: Utiliza o `pynput.keyboard.Listener` para registrar eventos de entrada em tempo real.
+2.  **Lógica de Cooldown**: Implementa um intervalo de 60 segundos. Caso o usuário pare de digitar por esse tempo, o script insere automaticamente um marcador de data/hora para organizar o log.
+3.  **Tratamento de Caracteres**: Converte teclas especiais (Espaço, Enter, Backspace) em formatos legíveis no arquivo final.
+4.  **Exfiltração (Conceitual)**: O módulo de e-mail utiliza `smtplib` com TLS para enviar os dados acumulados para um servidor remoto de forma assíncrona.
 
-- Utiliza `pynput.keyboard.Listener`  
-- Implementa função de callback para capturar eventos de tecla pressionada  
-
----
-
-### 🔎 Tratamento de Teclas Especiais
-
-- Espaço → `" "`  
-- Enter → `"\n"`  
-- Backspace → marcador especial  
-- Teclas especiais são tratadas para manter legibilidade  
-
----
-
-### 🗂 Registro em Arquivo
-
-As teclas capturadas são armazenadas em: keylogger_simulado/logs.txt
-
-
-Utilizando modo append (`"a"`).
-
----
-
-### 📧 Envio por E-mail (Simulado)
-
-O projeto demonstra conceitualmente:
-
-- Uso do protocolo SMTP  
-- Conexão TLS (porta 587)  
-- Envio automatizado após determinado critério (tempo ou volume de dados)  
-
----
-
-### Código
-
-
-Instalar Dependências
-```
+### Comandos de Execução
+```bash
+# Instalar biblioteca necessária
 pip install pynput
-```
 
-Executar Keylogger (Simulação)
-```
-python keylogger.py
+# Iniciar o monitoramento
+python keyL/keylogger.pyw
 ```
 
 ---
 
-# 🛡 Técnicas de Defesa recomendadas
+# 🛡️ Estratégias de Defesa Recomendadas
 
-## Gerais (valem pros dois)
-- Backups em nuvem e/ou dispositivos externos 
-- Controle de privilégios  
-- Manter antivirus e sistema atualizados
-- Firewall bloqueando conexões suspeitas  
+### Contra Ransomware
+- **Backups Offline**: Manter cópias de segurança desconectadas da rede (Regra 3-2-1).
+- **Monitoramento de Arquivos**: Ferramentas de FIM (File Integrity Monitoring) que detectam mudanças em massa.
 
-## 🔐 Contra Ransomware
+### Contra Keylogger
+- **MFA (Autenticação Multifator)**: O uso de códigos dinâmicos anula a utilidade de uma senha capturada.
+- **Teclado Virtual**: Utilização de interfaces visuais para digitação de senhas críticas (ex: bancos).
 
-- Monitoramento de modificação em massa
-
----
-
-## ⌨ Contra Keylogger
-
-- Antivírus com monitoramento comportamental  
-- MFA (Autenticação Multifator)  
-- Monitoramento de processos em segundo plano  
-
----
-
-# 🔎 Como Detectar Esse Tipo de Ameaça
-
-## Indicadores de Ransomware:
-
-- Uso elevado de CPU  
-- Modificação simultânea de múltiplos arquivos  
-- Presença de arquivos de resgate (NÃO SPAM DE E-MAIL)
-- Alterações inesperadas em extensões  
-
-## Indicadores de Keylogger:
-
-- Processos ocultos em execução contínua (Utilizar Process Explorer <https://learn.microsoft.com/en-us/sysinternals/downloads/process-explorer>)
+### Como Detectar
+- **Análise de Processos**: Monitorar processos `python.exe` sem janela visível via **Process Explorer**.
+- **Indicadores de Rede**: Conexões inesperadas para servidores SMTP (Porta 587) partindo de estações de trabalho.
 
 ---
 
 # 🧪 Ambiente de Testes
-
-- Máquina virtural (VMWare Workstation) sem acesso à rede ou arquivos do aparelho principal;
-- Utilizados apenas como testes, segundo o ensinado no curso.
-
----
-
-# 📚 Aprendizados Obtidos
-
-Durante o desenvolvimento deste projeto, foi possível:
-
-- Compreender o funcionamento interno de ransomware  
-- Entender como eventos de teclado podem ser interceptados  
-- Identificar vulnerabilidades exploradas por engenharia social  
-- Desenvolver pensamento crítico voltado para segurança ofensiva e defensiva  
+- **Virtualização**: Todos os testes foram realizados em máquina virtual (VMWare/VirtualBox) isolada da rede principal.
+- **Controle**: Uso de pastas específicas para teste, garantindo a integridade dos arquivos do sistema operacional.
 
 ---
 
-# ⚖ Considerações Éticas
-
-O estudo de malware é fundamental para profissionais de segurança da informação.  
-Este projeto foi desenvolvido com responsabilidade, visando exclusivamente aprendizado e conscientização sobre ameaças digitais.
-
-
+# ⚖️ Considerações Éticas
+Este projeto foi desenvolvido com responsabilidade, visando exclusivamente o aprendizado técnico e a conscientização sobre ameaças digitais. A segurança ofensiva é estudada aqui como ferramenta para construir defesas mais sólidas.
