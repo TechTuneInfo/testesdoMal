@@ -54,7 +54,7 @@ testesdoMal/
 
 1.  **Geração de Chave**: Utiliza a biblioteca `cryptography` (Fernet) para criar uma chave única de 32 bytes.
 2.  **Varredura Recursiva**: O script percorre o diretório alvo utilizando `os.walk`, identificando arquivos para cifrar.
-3.  **Criptografia in-place**: Os arquivos são lidos em modo binário, criptografados e sobrescritos imediatamente, tornando o conteúdo original inacessível sem a chave.
+3.  **Criptografia in-place**: Os arquivos são lidos, criptografados e sobrescritos imediatamente, tornando o conteúdo original inacessível sem a chave.
 4.  **Nota de Resgate**: É gerado o arquivo `SIFU_DEU.txt`, simulando a comunicação de um atacante real.
 
 ### Comandos de Execução
@@ -76,7 +76,7 @@ python ranrans/decrypt.py
 ## 🧠 Funcionamento Técnico
 
 1.  **Captura de Teclas**: Utiliza o `pynput.keyboard.Listener` para registrar eventos de entrada em tempo real.
-2.  **Lógica de Cooldown**: Implementa um intervalo de 60 segundos. Caso o usuário pare de digitar por esse tempo, o script insere automaticamente um marcador de data/hora para organizar o log.
+2.  **Lógica de Cooldown**: Implementa um intervalo de 60 segundos entre teclas pressionadas. Caso o usuário pare de digitar por esse tempo, o script insere automaticamente um marcador de data/hora para organizar o log.
 3.  **Tratamento de Caracteres**: Converte teclas especiais (Espaço, Enter, Backspace) em formatos legíveis no arquivo final.
 4.  **Exfiltração (Conceitual)**: O módulo de e-mail utiliza `smtplib` com TLS para enviar os dados acumulados para um servidor remoto de forma assíncrona.
 
@@ -94,7 +94,7 @@ python keyL/keylogger.pyw
 # 🛡️ Estratégias de Defesa Recomendadas
 
 ### Contra Ransomware
-- **Backups Offline**: Manter cópias de segurança desconectadas da rede (Regra 3-2-1).
+- **Backups**: Manter cópias de segurança dos arquivos importantes (Regra 3-2-1: três cópias dos dados, em dois tipos de mídia, com uma delas armazenada fora do local).
 - **Monitoramento de Arquivos**: Ferramentas de FIM (File Integrity Monitoring) que detectam mudanças em massa.
 
 ### Contra Keylogger
