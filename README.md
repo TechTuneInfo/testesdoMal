@@ -38,9 +38,9 @@ Ao desenvolver este projeto, foram explorados os seguintes conceitos:
 # 🗂 Estrutura do Projeto
 
 ```
-malware-simulation-python/
+testesdoMal/
 │
-├── ransomware_simulado/
+├── ranrans/
 │ ├── encrypt.py
 │ ├── decrypt.py
 │ ├── key.key
@@ -48,7 +48,7 @@ malware-simulation-python/
 │ ├── teste1.txt
 │ ├── teste2.txt
 │
-├── keylogger_simulado/
+├── keyL/
 │ ├── keylogger.py
 │ └── logs.txt
 │
