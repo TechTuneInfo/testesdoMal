@@ -8,7 +8,7 @@ log = ""
 #CONFIGURAÇÕES DE E-MAIL 
 EMAIL_ORIGEM = "testesdomal@gmail.com"
 EMAIL_DESTINO= "testesdomal@gmail.com"
-SENHA_EMAIL = "abcd efgh ijkl mnop" #chave MFA
+SENHA_EMAIL = "abcd efgh ijkl mnop" #senha de app gmail
 
 def enviar_email():
     global log 
