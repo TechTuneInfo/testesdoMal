@@ -4,12 +4,12 @@ from cryptography.fernet import Fernet, InvalidToken
 KEY_FILE = "key.key"
 TARGET_DIR = "test_files"
 
-# Load encryption key from file
+# Carrega a chave de decriptação do arquivo
 def load_key():
     with open(KEY_FILE, "rb") as f:
         return f.read()
 
-# Decrypt a single file
+# Decripta um arquivo
 def decrypt_file(filepath, key):
     f = Fernet(key)
 
@@ -27,7 +27,7 @@ def decrypt_file(filepath, key):
 
     print(f"[+] Decrypted: {filepath}")
 
-# Find target files
+# Encontra arquivos alvo
 def find_files(directory):
     files = []
 
@@ -40,7 +40,7 @@ def find_files(directory):
 
     return files
 
-# Main execution
+# Execução principal (Main)
 def main():
     key = load_key()
     files = find_files(TARGET_DIR)
