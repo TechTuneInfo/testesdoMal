@@ -45,11 +45,12 @@ testesdoMal/
 │ ├── decrypt.py
 │ ├── key.key
 │ └── arquivos_teste/
-│ ├── teste1.txt
-│ ├── teste2.txt
+│   ├── teste1.txt
+│   ├── teste2.txt
 │
 ├── keyL/
 │ ├── keylogger.py
+│ ├── keylogger_email.py
 │ └── logs.txt
 │
 ├── images/
