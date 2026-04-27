@@ -43,7 +43,7 @@ testesdoMal/
 ├── ranrans/
 │ ├── encrypt.py
 │ ├── decrypt.py
-│ ├── key.key
+│ ├── chave.key
 │ └── arquivos_teste/
 │   ├── teste1.txt
 │   ├── teste2.txt
