@@ -35,12 +35,13 @@ testesdoMal/
 │   ├── ramsonware.pyw       # Script de ataque (execução oculta)
 │   ├── decrypt.py           # Ferramenta de restauração de arquivos
 │   ├── chave.key            # Chave gerada para a sessão de teste
+│   ├── SIFU_DEU.txt         # Mensagem de resgate
 │   └── arquivos_teste/      # Pasta contendo arquivos para simulação
 │
 ├── keyL/                    # Módulo de Keylogger
 │   ├── keylogger.pyw        # Captura local com lógica de cooldown
 │   ├── keylogger_email.py   # Script de captura com envio via SMTP
-│   └── logs/                # Diretório de armazenamento dos logs txt
+│   └── logs.txt             # Arquivo de armazenamento dos logs
 │
 └── README.md
 ```
